@@ -1,11 +1,10 @@
 
 import page.MainPage;
 import page.OrderPage;
-import org.hamcrest.MatcherAssert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import static org.hamcrest.CoreMatchers.containsString;
+import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
 
@@ -15,7 +14,7 @@ public class UpperOrderPositiveTest extends BaseUITests {
     private final String name, surname, address, metro, phone, date, term, color, comment;
 
     // Сообщение об успешном оформлении заказа
-    private final String expectedOrderSuccessText = "Заказ оформлен";
+   private final String expectedOrderSuccessText = "Заказ оформлен";
 
 
     //К-р класса OrderPositiveTest
@@ -76,10 +75,9 @@ public class UpperOrderPositiveTest extends BaseUITests {
         orderPage.setComment(this.comment);
         orderPage.makeOrder();
 
-        MatcherAssert.assertThat(
-                "Не создается заказ",
-                orderPage.getNewOrderSuccessMessage(),
-                containsString(this.expectedOrderSuccessText)
-        );
+        String newOrderSuccessMessage = orderPage.getNewOrderSuccessMessage();
+        String actualTitle = expectedOrderSuccessText.split("\n")[0];
+
+        assertEquals("Не создается заказ. Ожидалось сообщение: " + this.expectedOrderSuccessText + ", но получено: " + newOrderSuccessMessage, this.expectedOrderSuccessText,actualTitle);
     }
 }

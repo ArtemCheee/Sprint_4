@@ -1,11 +1,9 @@
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.hamcrest.MatcherAssert;
 import page.MainPage;
+import static org.junit.Assert.assertEquals;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.junit.Assert.fail;
 
 @RunWith(Parameterized.class)
 
@@ -43,26 +41,15 @@ public class MainPageFaqTest extends BaseUITests{
 
 
     @Test
-    public void checkAccordionIsCorrect() throws InterruptedException {
+    public void checkAccordionIsCorrect() {
         MainPage mainPage = new MainPage(this.webDriver);
-        Thread.sleep(3000);
         mainPage.clickOnCookieAcceptButton();
         mainPage.clickOnQuestion(this.numberOfElement);
         mainPage.waitForLoadAnswer(this.numberOfElement);
 
-        if (mainPage.isAnswerDisplayed(this.numberOfElement)) {
-            MatcherAssert.assertThat("Не совпадение в вопросе №" + this.numberOfElement,
-                    this.expectedQuestionText,
-                    equalTo(mainPage.getQuestionText(this.numberOfElement))
-            );
-            MatcherAssert.assertThat("Не совпадение в ответе №" + this.numberOfElement,
-                    this.expectedAnswerText,
-                    equalTo(mainPage.getAnswerText(this.numberOfElement))
-            );
-        }
-        else {
-            fail("Не совпадение в вопросе №" + this.numberOfElement);
-        }
+        assertEquals("Не совпадение в вопросе №" + this.numberOfElement, this.expectedQuestionText, mainPage.getQuestionText(this.numberOfElement));
+        assertEquals("Не совпадение в ответе №" + this.numberOfElement, this.expectedAnswerText, mainPage.getAnswerText(this.numberOfElement));
+
     }
 }
 

@@ -1,13 +1,12 @@
 import org.junit.Test;
-
 import page.MainPage;
 import page.OrderPage;
+
+import static org.junit.Assert.assertEquals;
 
 
 public class LowerOrderPositiveTest extends BaseUITests {
 
-    private MainPage mainPage;
-    private OrderPage orderPage;
     private final String expectedSuccessText = "Для кого самокат";
 
 
@@ -23,9 +22,9 @@ public void lowerOrderButtonOpensForm() {
     mainPage.clickOrderButtonBody();
 
     String actualHeaderText = orderPage.getOrderHeaderText();
-    assert actualHeaderText.contains(expectedSuccessText)
-            : "Ожидался заголовок '" + expectedSuccessText + "', но получили '" + actualHeaderText + "'";
 
+    assertEquals("Заголовок формы не соответствует ожидаемому", expectedSuccessText, actualHeaderText);
 }
 
 }
+

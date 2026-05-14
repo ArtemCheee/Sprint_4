@@ -9,11 +9,11 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 public class BaseUITests {
 
     protected WebDriver webDriver;
-    private final String mainPage = "https://qa-scooter.praktikum-services.ru";
+    private final static String mainPage = "https://qa-scooter.praktikum-services.ru";
     @Before
     public void startBrowser(){
-        WebDriverManager.chromedriver().setup();
-        this.webDriver = new ChromeDriver();
+        WebDriverManager.firefoxdriver().setup();
+        this.webDriver = new FirefoxDriver();
         this.webDriver.get(this.mainPage);
     }
     @After
