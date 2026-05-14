@@ -62,7 +62,7 @@ public class OrderPage {
     //  Кнопка "Да" в окошке с подтверждением заказа
     private final By acceptOrderButton = By.xpath(".//div[starts-with(@class, 'Order_Modal')]//button[not(contains(@class,'Button_Inverted'))]");
 
-    //  Текст об успешном оформлении заказа во всплывающем окошке */
+    //  Текст об успешном оформлении заказа во всплывающем окошке
     private final By newOrderSuccessMessage = By.xpath(".//div[starts-with(@class, 'Order_Modal')]//div[(starts-with(@class,'Order_ModalHeader'))]");
 
     //  Шапка поля оформления заказа
