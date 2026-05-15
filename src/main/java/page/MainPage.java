@@ -1,6 +1,8 @@
 package page;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
@@ -21,6 +23,7 @@ public class MainPage {
 
     //к-р MainPage
     public MainPage(WebDriver driver) {
+
         this.webDriver = driver;
     }
 
@@ -33,18 +36,20 @@ public class MainPage {
 
     //клик на вопрос
     public void clickOnQuestion(int index) {
-        this.webDriver.findElements(this.faqQuestion).get(index).click();
+        WebElement element = webDriver.findElements(By.xpath("//div[@class='accordion__item']")).get(index);
+        ((JavascriptExecutor) webDriver).executeScript("arguments[0].scrollIntoView();", element);
+        element.click();
     }
 
-    //получить вопрос
-    public String getQuestionText(int index) {
-        return this.webDriver.findElements(this.faqQuestion).get(index).getText();
-    }
-
-    //проверка раскрытия ответа
-    public boolean isAnswerDisplayed(int index) {
-        return this.webDriver.findElements(this.faqAnswer).get(index).isDisplayed();
-    }
+//    //получить вопрос
+//    public String getQuestionText(int index) {
+//        return this.webDriver.findElements(this.faqQuestion).get(index).getText();
+//    }
+//
+//    //проверка раскрытия ответа
+//    public boolean isAnswerDisplayed(int index) {
+//        return this.webDriver.findElements(this.faqAnswer).get(index).isDisplayed();
+//    }
 
     //получить ответ
     public String getAnswerText(int index) {

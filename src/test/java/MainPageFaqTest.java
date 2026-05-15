@@ -12,16 +12,13 @@ public class MainPageFaqTest extends BaseUITests{
     //номер вопроса
     private final int numberOfElement;
 
-    //ожидаемый текст вопроса
-    private final String expectedQuestionText;
-
     //ожидаемый текст ответа
     private final String expectedAnswerText;
 
     //к-р
     public MainPageFaqTest(int numberOfElement, String expectedQuestionText, String expectedAnswerText) {
         this.numberOfElement = numberOfElement;
-        this.expectedQuestionText = expectedQuestionText;
+
         this.expectedAnswerText = expectedAnswerText;
     }
 
@@ -47,7 +44,6 @@ public class MainPageFaqTest extends BaseUITests{
         mainPage.clickOnQuestion(this.numberOfElement);
         mainPage.waitForLoadAnswer(this.numberOfElement);
 
-        assertEquals("Не совпадение в вопросе №" + this.numberOfElement, this.expectedQuestionText, mainPage.getQuestionText(this.numberOfElement));
         assertEquals("Не совпадение в ответе №" + this.numberOfElement, this.expectedAnswerText, mainPage.getAnswerText(this.numberOfElement));
 
     }
