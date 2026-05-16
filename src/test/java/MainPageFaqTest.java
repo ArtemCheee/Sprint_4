@@ -12,20 +12,21 @@ public class MainPageFaqTest extends BaseUITests{
     //номер вопроса
     private final int numberOfElement;
 
+    private final String expectedQuestionText;
     //ожидаемый текст ответа
     private final String expectedAnswerText;
 
     //к-р
     public MainPageFaqTest(int numberOfElement, String expectedQuestionText, String expectedAnswerText) {
         this.numberOfElement = numberOfElement;
-
+        this.expectedQuestionText = expectedQuestionText;
         this.expectedAnswerText = expectedAnswerText;
     }
 
     @Parameterized.Parameters()
     public static Object[][] setTestData() {
         return new Object[][] {
-                {0, "Сколько это стоит? И как оплатить?", "Сутки — 400 рублей. Оплата курьеру — наличными или картой."},
+                {0, "Сколько это стоит? И как оплатить?", " — 400 рублей. Оплата курьеру — наличными или картой."},
                 {1, "Хочу сразу несколько самокатов! Так можно?", "Пока что у нас так: один заказ — один самокат. Если хотите покататься с друзьями, можете просто сделать несколько заказов — один за другим."},
                 {2, "Как рассчитывается время аренды?", "Допустим, вы оформляете заказ на 8 мая. Мы привозим самокат 8 мая в течение дня. Отсчёт времени аренды начинается с момента, когда вы оплатите заказ курьеру. Если мы привезли самокат 8 мая в 20:30, суточная аренда закончится 9 мая в 20:30."},
                 {3, "Можно ли заказать самокат прямо на сегодня?", "Только начиная с завтрашнего дня. Но скоро станем расторопнее."},
@@ -44,8 +45,7 @@ public class MainPageFaqTest extends BaseUITests{
         mainPage.clickOnQuestion(this.numberOfElement);
         mainPage.waitForLoadAnswer(this.numberOfElement);
 
-        assertEquals("Не совпадение в ответе №" + this.numberOfElement, this.expectedAnswerText, mainPage.getAnswerText(this.numberOfElement));
-
+        assertEquals("Не совпадение в ответе на вопрос: " + this.expectedQuestionText, this.expectedAnswerText, mainPage.getAnswerText(this.numberOfElement));
     }
 }
 

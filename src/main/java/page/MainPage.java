@@ -36,20 +36,10 @@ public class MainPage {
 
     //клик на вопрос
     public void clickOnQuestion(int index) {
-        WebElement element = webDriver.findElements(By.xpath("//div[@class='accordion__item']")).get(index);
+        WebElement element = webDriver.findElements(faqQuestion).get(index);
         ((JavascriptExecutor) webDriver).executeScript("arguments[0].scrollIntoView();", element);
         element.click();
     }
-
-//    //получить вопрос
-//    public String getQuestionText(int index) {
-//        return this.webDriver.findElements(this.faqQuestion).get(index).getText();
-//    }
-//
-//    //проверка раскрытия ответа
-//    public boolean isAnswerDisplayed(int index) {
-//        return this.webDriver.findElements(this.faqAnswer).get(index).isDisplayed();
-//    }
 
     //получить ответ
     public String getAnswerText(int index) {

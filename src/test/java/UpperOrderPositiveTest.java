@@ -14,7 +14,7 @@ public class UpperOrderPositiveTest extends BaseUITests {
     private final String name, surname, address, metro, phone, date, term, color, comment;
 
     // Сообщение об успешном оформлении заказа
-   private final String expectedOrderSuccessText = "Заказ оформлен";
+    private final String expectedOrderSuccessText = "Заказ оформлен";
 
 
     //К-р класса OrderPositiveTest
@@ -44,7 +44,7 @@ public class UpperOrderPositiveTest extends BaseUITests {
 
     @Parameterized.Parameters(name = "Оформление заказа. Позитивный сценарий. Пользователь: {0} {1}")
     public static Object[][] setDataForOrder() {
-        return new Object[][] {
+        return new Object[][]{
                 {"Петр", "Петров", "фывфывфывфывфыв", "Ростокино", "+78889991122", "13.05.2026", "двое суток", "серая безысходность", "123123"},
                 {"Иван ", "Иванов", "фывфывфывфывфыв", "Ростокино", "+71112223344", "13.05.2026", "трое суток", "чёрный жемчуг", "456456"},
         };
@@ -75,9 +75,8 @@ public class UpperOrderPositiveTest extends BaseUITests {
         orderPage.setComment(this.comment);
         orderPage.makeOrder();
 
-        String newOrderSuccessMessage = orderPage.getNewOrderSuccessMessage();
-        String actualTitle = expectedOrderSuccessText.split("\n")[0];
+        String actualSuccessMessage = orderPage.getNewOrderSuccessMessage();
 
-        assertEquals("Не создается заказ. Ожидалось сообщение: " + this.expectedOrderSuccessText + ", но получено: " + newOrderSuccessMessage, this.expectedOrderSuccessText,actualTitle);
+        assertEquals("Не создается заказ. Ожидалось сообщение: " + this.expectedOrderSuccessText +"но получено: " + actualSuccessMessage ,this.expectedOrderSuccessText, actualSuccessMessage);
     }
 }
